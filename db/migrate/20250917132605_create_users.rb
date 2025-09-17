@@ -3,8 +3,8 @@ class CreateUsers < ActiveRecord::Migration[8.0]
     create_table :users do |t|
       t.string :name
       t.string :email
-      t.boolean :is_active
-      t.string :role
+      t.boolean :is_active, default: true, null: false
+      t.string :role, default: "user", null: false
       t.integer :gender
 
       t.timestamps
