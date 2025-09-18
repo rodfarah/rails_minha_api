@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :get_user, only: [:show, :update, :destroy]
+  before_action :get_user, only: [:show, :update, :destroy, :destroy_comments]
 
   # GET /users
   def index
@@ -41,6 +41,13 @@ class UsersController < ApplicationController
     render json: { message: "User deleted" }
   rescue ActiveRecord::RecordNotFound
     render json: { error: "User not found" }, status: 404
+  end
+
+  # CUSTOMIZED ACTION to delete all comments from a specific user
+  # DELETE /users/:id/comments
+  def destroy_comments
+    @user.comments.destroy_all
+    render json: { message: "All comments from this user have been deleted successfully" }
   end
 
   private
