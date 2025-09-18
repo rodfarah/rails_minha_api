@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :get_comment, only: [:show, :update, :destroy]
+  before_action :get_comment, only: [ :show, :update, :destroy ]
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   # GET /comments
@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
     # Garante que o hash params tenha uma chave comment.
     # Permite apenas os atributos listados (:body e : user_id)
     # a serem usados no Comment.new ou @comment.update
-    # Evita que alguém envie um atributo que você não quer, como 
+    # Evita que alguém envie um atributo que você não quer, como
     # is_admin: true ou id: 9999.
     params.require(:comment).permit(:body, :user_id, :post_id)
   end

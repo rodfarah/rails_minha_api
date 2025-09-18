@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :get_post, only: [:show, :update, :destroy]
+  before_action :get_post, only: [ :show, :update, :destroy ]
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -31,7 +31,6 @@ class PostsController < ApplicationController
     else
       render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
     end
-  
   end
 
   # DELETE /posts/:id
@@ -54,7 +53,7 @@ class PostsController < ApplicationController
     # Garante que o hash params tenha uma chave post.
     # Permite apenas os atributos listados (:title, :body e :user_id)
     # a serem usados no Post.new ou @post.update
-    # Evita que alguém envie um atributo que você não quer, como 
+    # Evita que alguém envie um atributo que você não quer, como
     # is_admin: true ou id: 9999.
     params.require(:post).permit(:title, :body, :user_id)
   end
