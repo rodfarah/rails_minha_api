@@ -12,8 +12,6 @@ class PostsController < ApplicationController
   # GET /posts/:id
   def show
     render json: @post
-  rescue ActiveRecord::RecordNotFound
-    render json: { error:"Post not found" }, status: 404
   end
 
   # POST /posts
@@ -40,7 +38,6 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     render json: { message: "Post has been deleted successfully" }
-  
   end
 
   private
@@ -55,7 +52,7 @@ class PostsController < ApplicationController
 
   def post_params
     # Garante que o hash params tenha uma chave post.
-    # Permite apenas os atributos listados (:title e :body)
+    # Permite apenas os atributos listados (:title, :body e :user_id)
     # a serem usados no Post.new ou @post.update
     # Evita que alguém envie um atributo que você não quer, como 
     # is_admin: true ou id: 9999.
