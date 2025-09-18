@@ -51,4 +51,23 @@ Rails.application.routes.draw do
   # Delete a specific post
   delete "/posts/:id", to: "posts#destroy"
 
+  ################
+  ### Comments ###
+  ################
+  
+  # list all comments
+  get "/comments", to: "comments#index"
+  
+  # show a specific comment
+  get "/comments/:id", to: "comments#show"
+  
+  # create a new comment
+  post "/comments", to: "comments#create"
+  
+  # update a specific comment
+  patch "/comments/:id", to: "comments#update"
+  put "/comments/:id", to: "comments#update"
+  
+  # delete a specific comment
+  delete "/comments/:id", to: "comments#destroy"
 end
