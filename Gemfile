@@ -42,7 +42,11 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
+  # Ler variáveis de ambiente
   gem "dotenv-rails"
+
+  # JSON Web Tokens
+  gem "jwt"
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
