@@ -4,7 +4,7 @@ class User < ApplicationRecord
   enum :gender, { male: 0, female: 1, other: 2 }
 
   # enum for role
-  enum :role, { admin: 0, user:1 }
+  enum :role, { admin: 0, user: 1 }
 
   # basic validations
   validates :name, presence: true
