@@ -46,4 +46,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Serializer
+  gem "active_model_serializers", "~> 0.10.12"
 end
