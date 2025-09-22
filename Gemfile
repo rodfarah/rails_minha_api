@@ -51,6 +51,9 @@ group :development, :test do
   # Encryption for JWT
   gem "bcrypt", "~> 3.1.7"
 
+  # Authorization
+  gem "pundit"
+
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
