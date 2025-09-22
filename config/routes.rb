@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   # delete all comments from a specific user
   delete "/users/:id/comments", to: "users#destroy_comments"
 
+  # login
+  post "/login", to: "auth#login"
+
+
   ################
   #### POSTS #####
   ################

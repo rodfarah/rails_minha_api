@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize_request, only: [ :create ]
   before_action :get_user, only: [ :show, :update, :destroy, :destroy_comments ]
 
   # GET /users
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :role, :gender, :is_active)
+    params.require(:user).permit(:name, :password, :password_confirmation, :email, :role, :gender, :is_active)
   end
 
   def get_user

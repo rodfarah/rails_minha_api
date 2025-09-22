@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_secure_password
   has_many :posts, dependent: :destroy # on_delete(Model.Cascade) do Django
   # enum for gender
   enum :gender, { male: 0, female: 1, other: 2 }

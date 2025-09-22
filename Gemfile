@@ -48,6 +48,9 @@ group :development, :test do
   # JSON Web Tokens
   gem "jwt"
 
+  # Encryption for JWT
+  gem "bcrypt", "~> 3.1.7"
+
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
