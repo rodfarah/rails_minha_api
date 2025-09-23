@@ -5,18 +5,22 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
+    authorize Post
     posts = Post.all
     render json: posts
   end
 
   # GET /posts/:id
   def show
+    authorize @post
     render json: @post
   end
 
   # POST /posts
   def create
     post = Post.new(post_params)
+    # Authorization
+    authorize post
     if post.save
       render json: post, status: :created
     else
@@ -27,7 +31,6 @@ class PostsController < ApplicationController
   # PUT / PATCH /posts/:id
   def update
     # authorization
-    @post = Post.find(params[:id])
     authorize @post
 
     if @post.update(post_params)
@@ -39,7 +42,6 @@ class PostsController < ApplicationController
 
   # DELETE /posts/:id
   def destroy
-    @post = Post.find(params[:id])
     authorize @post
 
     @post.destroy
