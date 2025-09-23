@@ -25,6 +25,10 @@ class CommentsController < ApplicationController
 
   # PUT ou PATCH /comments/:id
   def update
+    @comment = Comment.find(params[:id])
+    # Authorization
+    authorize @comment
+
     if @comment.update(comment_params)
       render json: @comment
     else
@@ -34,6 +38,10 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/:id
   def destroy
+    @comment = Comment.find(params[:id])
+
+    # Authorization
+    authorize @comment
     @comment.destroy
     render json: { message: "Comment has been deleted" }
   end
