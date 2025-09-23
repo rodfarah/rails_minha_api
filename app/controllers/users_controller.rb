@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorize_request, only: [ :create ]
-  before_action :get_user, only: [ :show, :update, :destroy, :destroy_comments ]
+  before_action :get_user, only: [ :show, :update, :destroy, :destroy_comments, :admin_update ]
 
   # GET /users
   def index
@@ -51,10 +51,25 @@ class UsersController < ApplicationController
     render json: { message: "All comments from this user have been deleted successfully" }
   end
 
+  # PUT / PATCH /users/:id/admin_update
+  # Esse endpoint é específico para admins alterarem usuários, inclusive atributos sensíveis (role e is_active).
+  def admin_update
+    authorize @user, :admin_update? # Pundit only let admin access
+    if @user.update(admin_user_params)
+      render json: @user, serializer: AdminUserUpdateSerializer
+    else
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :email, :role, :gender, :is_active)
+    params.require(:user).permit(:name, :password, :password_confirmation, :email, :gender)
+  end
+
+  def admin_user_params
+    params.require(:user).permit(:name, :password, :password_confirmation, :email, :gender, :role, :is_active)
   end
 
   def get_user

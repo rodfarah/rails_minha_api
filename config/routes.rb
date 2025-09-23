@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   # login
   post "/login", to: "auth#login"
 
+  # ROUTES FOR UPDATING A USER TO ADMIN
+  put "/users/:id/admin-update", to: "users#admin_update"
+  patch "/users/:id/admin-update", to: "users#admin_update"
+
 
   ################
   #### POSTS #####
