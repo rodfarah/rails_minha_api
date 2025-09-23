@@ -4,28 +4,32 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
+    authorize Comment
     comments = Comment.all
     render json: comments
   end
 
   # GET /comments/:id
   def show
+    authorize @comment
     render json: @comment
   end
 
   # POST /comments
   def create
-    comment = Comment.new(comment_params)
-    if comment.save
-      render json: comment, status: :created
+    @comment = Comment.new(comment_params)
+    # Authorization
+    authorize @comment
+
+    if @comment.save
+      render json: @comment, status: :created
     else
-      render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @comment.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   # PUT ou PATCH /comments/:id
   def update
-    @comment = Comment.find(params[:id])
     # Authorization
     authorize @comment
 
@@ -38,8 +42,6 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/:id
   def destroy
-    @comment = Comment.find(params[:id])
-
     # Authorization
     authorize @comment
     @comment.destroy

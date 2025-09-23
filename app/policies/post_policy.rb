@@ -1,6 +1,19 @@
 class PostPolicy < ApplicationPolicy
+  def index?
+    active_and_present_user?
+  end
+
+  def show?
+    active_and_present_user?
+  end
+
+  def create?
+    active_and_present_user?
+  end
+
   def update?
-    user.admin? || user.id == record.user.id
+    active_and_present_user? &&
+      (user.admin? || record.user_id == user.id)
   end
 
   def edit?

@@ -36,6 +36,12 @@ class ApplicationPolicy
     false
   end
 
+  private
+
+  def active_and_present_user?
+    user.present? && user.is_active?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

@@ -1,13 +1,26 @@
 class CommentPolicy < ApplicationPolicy
-  def update?
-    user.admin? || record.user.id == user.id
+  def index?
+    active_and_present_user?
   end
 
-  def edit
+  def show?
+    active_and_present_user?
+  end
+
+  def create?
+    active_and_present_user?
+  end
+
+  def update?
+    active_and_present_user? && (user.admin? || record.user_id == user.id)
+  end
+
+  def edit?
     update?
   end
 
   def destroy?
-    update?
+    active_and_present_user? &&
+      (user.admin? || record.post.user_id == user.id || record.user_id == user.id)
   end
 end
