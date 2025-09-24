@@ -4,8 +4,8 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    authorize Comment
-    comments = Comment.all
+    # Only admin may see all posts. User may see self created posts.
+    comments = policy_scope(Comment)
     render json: comments
   end
 

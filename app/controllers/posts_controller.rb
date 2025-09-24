@@ -5,8 +5,8 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    authorize Post
-    posts = Post.all
+    # Only admin may see all posts. User may see self created posts.
+    posts = policy_scope(Post)
     render json: posts
   end
 

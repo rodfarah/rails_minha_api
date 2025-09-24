@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    users = User.all
+    # Only admin may see all posts. User may see self created posts.
+    users = policy_scope(User)
     render json: users
   end
 

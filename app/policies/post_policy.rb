@@ -1,4 +1,14 @@
 class PostPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      if user.admin?
+        scope.all
+      else
+        scope.where(user_id: user.id)
+      end
+    end
+  end
+  
   def index?
     active_and_present_user?
   end
