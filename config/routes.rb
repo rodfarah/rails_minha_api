@@ -78,4 +78,16 @@ Rails.application.routes.draw do
 
   # delete a specific comment
   delete "/comments/:id", to: "comments#destroy"
+
+  ################
+  #### Likes  ####
+  ################
+  resources :posts, only: [] do
+    #POST /posts/:post_id/likes → LikesController#create
+    resources :likes, only: [:create, :destroy, :index]
+    resources :comments, only: [] do
+      # POST /posts/:post_id/comments/:comment_id/likes → LikesController#create
+      resources :likes, only: [:create, :destroy, :index]
+    end
+  end
 end
