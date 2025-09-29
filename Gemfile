@@ -59,4 +59,9 @@ group :development, :test do
 
   # Serializer
   gem "active_model_serializers", "~> 0.10.12"
+
+  # Tests and swagger
+  gem "rspec-rails"
+  gem "rswag-specs"
+  gem "rswag-api"
 end

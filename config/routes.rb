@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Rswag::Api::Engine => '/api-docs'
   get "user_posts/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
