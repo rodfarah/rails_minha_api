@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "user_posts/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -12,31 +13,9 @@ Rails.application.routes.draw do
   #### USERS #####
   ################
 
-  # list all users
-  get "/users", to: "users#index"
-
-  # show a specific user
-  get "/users/:id", to: "users#show"
-
-  # create a new user
-  post "/users", to: "users#create"
-
-  # update a specific user
-  put "/users/:id", to: "users#update"
-  patch "/users/:id", to: "users#update"
-
-  # delete a specific user
-  delete "/users/:id", to: "users#destroy"
-
-  # delete all comments from a specific user
-  delete "/users/:id/comments", to: "users#destroy_comments"
-
-  # login
-  post "/login", to: "auth#login"
-
-  # ROUTES FOR UPDATING A USER TO ADMIN
-  put "/users/:id/admin-update", to: "users#admin_update"
-  patch "/users/:id/admin-update", to: "users#admin_update"
+  resources :users, only: [] do
+    resources :posts, only: :index, controller: "user_posts"
+  end
 
 
   ################

@@ -10,4 +10,8 @@ class User < ApplicationRecord
   # basic validations
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
+
+  def is_admin?
+    role == "admin"
+  end
 end

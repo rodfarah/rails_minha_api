@@ -64,6 +64,6 @@ class PostsController < ApplicationController
     # a serem usados no Post.new ou @post.update
     # Evita que alguém envie um atributo que você não quer, como
     # is_admin: true ou id: 9999.
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:title, :body, :draft, :user_id)
   end
 end

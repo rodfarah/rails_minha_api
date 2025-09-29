@@ -1,6 +1,6 @@
 class PostSerializer < ActiveModel::Serializer
   # these will be sent in JSON
-  attributes :id, :title, :body, :user_id, :short_comment_details
+  attributes :id, :title, :body, :draft, :user_id, :short_comment_details
 
   def short_comment_details
     object.comments.map do |comment|

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
   include Pundit::Authorization
   before_action :authorize_request
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   private
 
@@ -26,5 +27,11 @@ class ApplicationController < ActionController::API
         policy: exception.policy.class.to_s,
         query: exception.query
         }, status: :forbidden
+  end
+
+  def record_not_found(exception)
+    render json: {
+      error: "Record Not Found", details: exception.message
+    }, status: :not_found
   end
 end
