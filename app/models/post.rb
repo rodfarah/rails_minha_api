@@ -3,6 +3,16 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
 
-  validates :title, :body, presence: true
-  validates :body, length: { minimum: 2, maximum: 500 }
+  validates :title, presence: true
+  validates :body, presence: true, unless: :draft?
+  validates :body, length: { minimum: 2, maximum: 500 }, allow_blank: true
+
+  # convenience methods
+  def published?
+    !draft?
+  end
+
+  def publish!
+    update!(draft: false)
+  end
 end

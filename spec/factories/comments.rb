@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :comments do
-    text { Faker::Lorem.paragraph(sentence_count: 2) }
+  factory :comment do
+    body { Faker::Lorem.paragraph(sentence_count: 2) }
     association :user
     association :post
 

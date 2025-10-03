@@ -33,3 +33,7 @@
 
 # Ignore Copilot setup files
 /.github
+
+# Ignore fast tests
+fast_tests.rb
+
