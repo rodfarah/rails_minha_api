@@ -24,7 +24,7 @@ gem "thruster", require: false
 group :development, :test do
   # Debugging
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "pry", "~> 0.14.2"
+  gem "pry", "~> 0.15.2"
   gem "pry-byebug"
 
   # Segurança e estilo
