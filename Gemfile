@@ -44,7 +44,7 @@ group :development, :test do
   gem "active_model_serializers", "~> 0.10.12"
 
   # Testes principais
-  gem "rspec-rails", "~> 6.0.3"
+  gem "rspec-rails", "~> 8.0.2"
   gem "rswag-specs", "~> 2.9"
   gem "rswag-api"
 
