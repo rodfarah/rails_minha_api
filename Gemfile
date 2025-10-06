@@ -55,7 +55,7 @@ end
 
 group :test do
   # Matchers para validações e associações
-  gem "shoulda-matchers", "~> 5.3"
+  gem "shoulda-matchers", "~> 6.5"
 
   # Banco limpo entre testes
   gem "database_cleaner-active_record"
